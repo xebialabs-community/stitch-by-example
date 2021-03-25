@@ -1,0 +1,19 @@
+kind: Macros
+metadata:
+  namespace: k8s
+spec:
+  - name: "ReplicasSizeMacro"
+    description: "Replicas size for the deployment"
+    parameters:
+      replicasSize: 1
+    processor:
+      - type: patch
+        description: "Change replicas size"
+        phase: POST_FLIGHT
+        merge:
+          type: overlay
+        parameters:
+          patch:
+            - op: replace
+              path: "/spec/replicas"
+              value: ${replicasSize}

@@ -1,0 +1,16 @@
+kind: Rules
+metadata:
+  namespace: k8s
+spec:
+  - name: "k8s.AddGroovyLabel"
+    condition:
+      deployedType: k8s.Resources
+      #TODO we are missing the ---:> expression: ""
+    processor:
+      - type: "common:AddLabelsMacro"
+        description: "Add labels macro"
+        parameters:
+          labels: |
+          {
+            environment: "@environment.name"
+          }
