@@ -1,0 +1,7 @@
+apiVersion: xl/v1
+kind: Import
+metadata:
+  imports:
+    - infrastructure/k8s-master.yaml
+    - environments/k8s.yaml
+    - applications/k8s-apps.yaml

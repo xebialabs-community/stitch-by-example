@@ -1,0 +1,13 @@
+---
+apiVersion: xl-deploy/v1
+kind: Infrastructure
+spec:
+  - name: Infrastructure/azure-cloud
+    type: azure.Cloud
+    authMethod: !value authMethod
+    subscriptionId: !value subscriptionId
+    tenantId: !value tenantId
+    clientId: !value clientId
+    clientKey: !value clientKey
+    userName: !value userName
+    userPassword: !value userPassword

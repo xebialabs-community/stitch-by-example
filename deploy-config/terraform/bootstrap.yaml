@@ -1,0 +1,7 @@
+apiVersion: xl/v1
+kind: Import
+metadata:
+  imports:
+    - infrastructure/tf-server.yaml
+    - environments/terraform.yaml
+    - applications/tf-apps.yaml

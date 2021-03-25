@@ -1,0 +1,18 @@
+---
+apiVersion: xl-deploy/v1
+kind: Applications
+spec:
+  - name: Applications/azure-app
+    type: udm.Application
+    children:
+      - name: "1.0"
+        type: udm.DeploymentPackage
+        deployables:
+          - name: armStorage
+            type: azure.arm.Template
+            fileEncodings:
+              ".+\\.properties": ISO-8859-1
+            file: !file "artifacts/armTemplate.json"
+            resourceGroupName: "XLDARMResourceGroup"
+            location: "eastus"
+            deploymentMode: "Incremental"

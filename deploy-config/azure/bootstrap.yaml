@@ -1,0 +1,7 @@
+apiVersion: xl/v1
+kind: Import
+metadata:
+  imports:
+    - infrastructure/azure-server.yaml
+    - environments/azure.yaml
+    - applications/azure-apps.yaml
