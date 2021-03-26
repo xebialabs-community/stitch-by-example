@@ -1,0 +1,16 @@
+kind: Rules
+metadata:
+  namespace: k8s
+spec:
+  - name: "k8s.CreateK8SIngress"
+    condition:
+      deployedType: k8s.Resources
+      expression: "@environment.nameContains('prod') && !@dictionary.getValue('replicasSize').equals('1')"
+      postProcessing: true
+    processor:
+      - type: addYamlObject
+        description: "Add an simple Ingress"
+        merge:
+          type: none
+        parameters:
+          yamlFile: templates/k8s-ingress-example.yaml

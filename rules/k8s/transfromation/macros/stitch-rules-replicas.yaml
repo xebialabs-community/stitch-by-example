@@ -16,4 +16,4 @@ spec:
           patch:
             - op: replace
               path: "/spec/replicas"
-              value: ${replicasSize}
+              value: "#{#params['replicasSize']}"

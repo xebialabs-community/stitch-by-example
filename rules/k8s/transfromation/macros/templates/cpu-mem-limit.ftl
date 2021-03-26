@@ -1,7 +1,7 @@
 {
     "resources" : {
         "limits" : {
-            "cpu" : "${params.cpuNumber}",
+            "cpu" : ${params.cpuNumber},
             "memory" : "${params.memorySize}"
         }
     }

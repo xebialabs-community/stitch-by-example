@@ -9,4 +9,4 @@ spec:
     children:
       - name: aws-cloud-formation
         type: aws.cloudformation.Stack
-        region: eu-west-2
+        region: !value zone

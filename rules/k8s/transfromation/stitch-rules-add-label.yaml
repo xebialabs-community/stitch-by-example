@@ -5,12 +5,13 @@ spec:
   - name: "k8s.AddGroovyLabel"
     condition:
       deployedType: k8s.Resources
-      #TODO we are missing the ---:> expression: ""
     processor:
-      - type: "common:AddLabelsMacro"
+      - type: "k8s:AddLabelsMacro"
         description: "Add labels macro"
+        phase: PATCH
         parameters:
-          labels: |
-          {
-            environment: "@environment.name"
-          }
+          labels: "{\
+              \"scope\": \"#{@environment.nameContains('prod') ? 'production' : 'unknown'}\",\
+              \"environment\": \"#{@environment.name}\",\
+              \"service\": \"k8s-stitch\"\
+            }"

@@ -1,0 +1,18 @@
+kind: Rules
+metadata:
+  namespace: k8s
+spec:
+  - name: "JavaSvcResourcesGuard"
+    description: "Guard resources configuration for Java Application for k8s Test"
+    condition:
+      deployedType: k8s.Resources
+      expression: "@k8s.isDeployment\
+                    && @environment.nameContains('test')"
+    processor:
+      - type: "k8s:CpuMemoryLimitsMacro"
+        description: "Enforce CPU and Memory Limits for test"
+        phase: POST_FLIGHT
+        weight: 100
+        parameters:
+          cpuNumber: "1"
+          memorySize: "512Mi"

@@ -6,9 +6,9 @@ spec:
     description: "Adds entries to given path"
     parameters:
       path: undefined
-      entries: {}
+      entries: "{}"
     processor:
       - type: groovy
-          description: "Groovy script for adding entries to path"
-          parameters:
-            scriptFile: templates/AddEntryToPath.groovy
+        description: "Groovy script for adding entries to path"
+        parameters:
+          scriptFile: groovy/AddEntryToPath.groovy
