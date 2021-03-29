@@ -12,6 +12,6 @@ spec:
   - name: Environments/Aws-env
     type: udm.Environment
     members:
-      - Infrastructure/aws-cloud/aws-cloud
+      - Infrastructure/aws-cloud/aws-cloud-formation
     dictionaries:
       - Environments/ec2-yaml-dictionary
