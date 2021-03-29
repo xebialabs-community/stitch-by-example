@@ -2,7 +2,7 @@ kind: Rules
 metadata:
   namespace: k8s
 spec:
-  - name: "k8s.CreateK8SManifest"
+  - name: "CreateK8SManifest"
     condition:
       deployedType: k8s.Resources
       expression: "@deployedApplication.nameEquals('k8s-app-zero-to-hero')"

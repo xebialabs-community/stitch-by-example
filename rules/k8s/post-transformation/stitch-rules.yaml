@@ -2,7 +2,7 @@ kind: Rules
 metadata:
   namespace: k8s
 spec:
-  - name: "k8s.CreateK8SIngress"
+  - name: "CreateK8SIngress"
     condition:
       deployedType: k8s.Resources
       expression: "@environment.nameContains('prod') && !@dictionary.getValue('replicasSize').equals('1')"

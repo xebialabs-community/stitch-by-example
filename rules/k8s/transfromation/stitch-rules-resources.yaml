@@ -15,7 +15,7 @@ spec:
           replicasSize: "#{@dictionary.getValue('replicasSize')}"
       - type: "k8s:CpuMemoryLimitsMacro"
         description: "Add CPU and Memory Limits for production"
-        weight: 100
+        phase: PATCH
         parameters:
           cpuNumber: "#{@dictionary.getValue('cpuNumber')}"
           memorySize: "#{@dictionary.getValue('memorySize')}"

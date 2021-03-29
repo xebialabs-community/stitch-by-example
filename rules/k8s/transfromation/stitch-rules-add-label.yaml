@@ -2,7 +2,7 @@ kind: Rules
 metadata:
   namespace: k8s
 spec:
-  - name: "k8s.AddGroovyLabel"
+  - name: "AddLabels"
     condition:
       deployedType: k8s.Resources
     processor:
