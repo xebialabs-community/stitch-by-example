@@ -9,7 +9,6 @@ spec:
     processor:
       - type: patch
         description: "Change replicas size"
-        phase: POST_FLIGHT
         merge:
           type: overlay
         parameters:

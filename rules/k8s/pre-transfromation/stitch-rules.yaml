@@ -5,7 +5,7 @@ spec:
   - name: "k8s.CreateK8SManifest"
     condition:
       deployedType: k8s.Resources
-      expression: "@deployed.nameEquals('k8s-app-zero-to-hero')"
+      expression: "@deployedApplication.nameEquals('k8s-app-zero-to-hero')"
       preProcessing: true
     processor:
       - type: addYamlObject

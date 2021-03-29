@@ -7,6 +7,8 @@ spec:
       replicasSize: 2
       cpuNumber: 2
       memorySize: "2048Mi"
+      portNumber: 9090
+      nodePortNumber: 30009
   - name: Environments/k8s-test-dictionary
     type: udm.Dictionary
     entries:

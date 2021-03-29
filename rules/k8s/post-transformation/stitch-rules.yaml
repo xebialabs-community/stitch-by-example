@@ -8,9 +8,11 @@ spec:
       expression: "@environment.nameContains('prod') && !@dictionary.getValue('replicasSize').equals('1')"
       postProcessing: true
     processor:
-      - type: addYamlObject
+      - type: freemarker
         description: "Add an simple Ingress"
         merge:
-          type: none
+          type: overlay
         parameters:
-          yamlFile: templates/k8s-ingress-example.yaml
+          templateFile: templates/k8s-ingress-example.ftl
+          variables:
+            port: "#{@dictionary.getValue('portNumber')}"
