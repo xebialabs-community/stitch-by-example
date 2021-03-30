@@ -18,7 +18,7 @@ Macro is used from Stitch rules or macros as follows:
             }"
 ```
 ### Usages of `AddEntryToPath`
-In macro [AddLabelsMacro](../k8s/transfromation/macros/stitch-rules-add-labels.yaml).
+In macro [AddLabelsMacro](../k8s/transformation/macros/stitch-rules-add-labels.yaml).
 
 ## `PatchReplace` macro
 [PatchReplace macro](stitch-rules-replace-at-path.yaml) is used for replacing the given value on the specified path using the JSON Patch replace operation.
@@ -35,7 +35,7 @@ Macro is used from Stitch rules or macros as follows:
           value: "new-value"
 ```
 ### Usages of `PatchReplace`
-In macro [ReplicasSizeMacro](../k8s/transfromation/macros/stitch-rules-replicas.yaml).
-In rule [ServicePortsGuard](../k8s/transfromation/stitch-rules-service-ports-guard.yaml).
-In rule [DeploymentPortsGuard](../k8s/transfromation/stitch-rules-deployment-ports-guard.yaml).
+In macro [ReplicasSizeMacro](../k8s/transformation/macros/stitch-rules-replicas.yaml).
+In rule [ServicePortsGuard](../k8s/transformation/stitch-rules-service-ports-guard.yaml).
+In rule [DeploymentPortsGuard](../k8s/transformation/stitch-rules-deployment-ports-guard.yaml).
 In rule [UseLocationParameter](../azure/stitch-rules-use-location-param.yaml).
