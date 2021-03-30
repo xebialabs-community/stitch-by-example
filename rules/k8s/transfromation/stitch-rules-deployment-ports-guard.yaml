@@ -9,13 +9,9 @@ spec:
       expression: "@k8s.isDeployment\
                     && @environment.nameContains('prod')"
     processor:
-      - type: patch
+      - type: "common:PatchReplace"
         description: "Ensure containerPort for Production instance"
         phase: POST_FLIGHT
-        merge:
-          type: overlay
         parameters:
-          patch:
-            - op: replace
-              path: "/spec/template/spec/containers/0/ports/0/containerPort"
-              value: "#{@dictionary.getValue('portNumber')}"
+          path: "/spec/template/spec/containers/0/ports/0/containerPort"
+          value: "#{@dictionary.getValue('portNumber')}"

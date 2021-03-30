@@ -40,7 +40,7 @@ Processor is applied in `POST_FLIGHT` phase of the Stitch transformation, which 
 [Rule](stitch-rules-deployment-ports-guard.yaml) is applied for the `k8s.Resources` deployment, which have `kind` of `Deployment` and are deployed on the environment which name contains `prod` string.
 
 ### Processors
-Rule has one simple patch processor which uses JSON Patch to replace current value on path `/spec/template/spec/containers/0/ports/0/containerPort` with a value provided in the deployment dictionary by using SpEL expression `#{@dictionary.getValue('portNumber')}`.
+Rule has one processor of type `common:PatchReplace` which uses JSON Patch to replace current value on path `/spec/template/spec/containers/0/ports/0/containerPort` with a value provided in the deployment dictionary by using SpEL expression `#{@dictionary.getValue('portNumber')}`.
 
 Processor is applied in `POST_FLIGHT` phase of the Stitch transformation, which will ensure this rule is executed as one of the last ones.
 
@@ -49,6 +49,6 @@ Processor is applied in `POST_FLIGHT` phase of the Stitch transformation, which 
 [Rule](stitch-rules-service-ports-guard.yaml) is applied for the `k8s.Resources` deployment, which have `kind` of `Service` and are deployed on the environment which name contains `prod` string.
 
 ### Processors
-Rule has three simple patch processors which uses JSON Patch to replace current value on given paths.
+Rule has three processors which uses macro of type `common:PatchReplace` to replace current value on given paths.
 
 Processor is applied in `POST_FLIGHT` phase of the Stitch transformation, which will ensure this rule is executed as one of the last ones.

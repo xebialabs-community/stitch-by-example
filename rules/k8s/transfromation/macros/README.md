@@ -19,7 +19,7 @@ Example for `labels` input parameter is:
 In rule [AddLabels](../stitch-rules-add-label.yaml).
 
 ## `ReplicasSizeMacro` macro
-[`ReplicasSizeMacro` macro](stitch-rules-replicas.yaml) is used for adjusting replicas size. This macro uses the `patch` processor (see more about [JSON Patch](http://jsonpatch.com/)) which overlays output of the patch replace operation on the `/spec/replicas` path.
+[`ReplicasSizeMacro` macro](stitch-rules-replicas.yaml) is used for adjusting replicas size. This macro uses processor of type `common:PatchReplace` which overlays output of the patch replace operation on the `/spec/replicas` path.
 
 Input parameter `replicasSize` (with default value of `1`)for the macro is used as `value` parameter for the `replace` patch operation. The parameter uses SpEL expression to fetch the passed input with the expression `#{#params['replicasSize']}`. Keep in mind that we could use variables which would map our parameters to the values that are then directly used in the `value` parameter. 
  

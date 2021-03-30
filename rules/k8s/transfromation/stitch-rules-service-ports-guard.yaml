@@ -9,33 +9,21 @@ spec:
       expression: "@k8s.isService\
                     && @environment.nameContains('prod')"
     processor:
-      - type: patch
+      - type: "common:PatchReplace"
         description: "Ensure port for Production instance"
         phase: POST_FLIGHT
-        merge:
-          type: overlay
         parameters:
-          patch:
-            - op: replace
-              path: "/spec/ports/0/port"
-              value: "#{@dictionary.getValue('portNumber')}"
-      - type: patch
+          path: "/spec/ports/0/port"
+          value: "#{@dictionary.getValue('portNumber')}"
+      - type: "common:PatchReplace"
         description: "Ensure targetPort for Production instance"
         phase: POST_FLIGHT
-        merge:
-          type: overlay
         parameters:
-          patch:
-            - op: replace
-              path: "/spec/ports/0/targetPort"
-              value: "#{@dictionary.getValue('portNumber')}"
-      - type: patch
+          path: "/spec/ports/0/targetPort"
+          value: "#{@dictionary.getValue('portNumber')}"
+      - type: "common:PatchReplace"
         description: "Ensure nodePort for Production instance"
         phase: POST_FLIGHT
-        merge:
-          type: overlay
         parameters:
-          patch:
-            - op: replace
-              path: "/spec/ports/0/nodePort"
-              value: "#{@dictionary.getValue('nodePortNumber')}"
+          path: "/spec/ports/0/nodePort"
+          value: "#{@dictionary.getValue('nodePortNumber')}"
