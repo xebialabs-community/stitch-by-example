@@ -1,0 +1,22 @@
+kind: Rules
+metadata:
+  namespace: terraform
+spec:
+  - name: "ChangeNamespaceName"
+    condition:
+      deployedType: terraform.ExecutedModule
+      expression: "#input.pathExistsWithValue('$.resource.kubernetes_namespace')"
+    processor:
+      - type: freemarker
+        description: "Change namespace name for the K8s deployment"
+        phase: PATCH
+        merge:
+          type: jsonpath
+          path: "$.resource.kubernetes_namespace.[*].metadata"
+        parameters:
+          template: |
+            {
+              "name": "${namespace}"
+            }
+          variables:
+            namespace: "#{@deployedApplication.name}"
