@@ -7,7 +7,7 @@ spec:
       deployedType: aws.cloudformation.DeployedTemplate
     processor:
       - type: groovy
-        description: "Change description with application name"
+        description: "Change description with simple string description"
         phase: BASE_DEFINITION
         parameters:
           script: |

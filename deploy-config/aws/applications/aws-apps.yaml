@@ -4,7 +4,7 @@ kind: Applications
 spec:
   - name: Applications/aws-json
     type: udm.Application
-    lastVersion: "2.0"
+    lastVersion: "1.0"
     children:
       - name: "1.0"
         type: udm.DeploymentPackage
