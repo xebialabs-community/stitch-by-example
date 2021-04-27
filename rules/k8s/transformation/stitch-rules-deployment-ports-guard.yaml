@@ -1,0 +1,17 @@
+kind: Rules
+metadata:
+  namespace: k8s
+spec:
+  - name: "DeploymentPortsGuard"
+    description: "Guard Deployment containers port for Production"
+    condition:
+      deployedType: k8s.Resources
+      expression: "@k8s.isDeployment\
+                    && @environment.nameContains('prod')"
+    processor:
+      - type: "common:PatchReplace"
+        description: "Ensure containerPort for Production instance"
+        phase: POST_FLIGHT
+        parameters:
+          path: "/spec/template/spec/containers/0/ports/0/containerPort"
+          value: "#{@dictionary.getValue('portNumber')}"

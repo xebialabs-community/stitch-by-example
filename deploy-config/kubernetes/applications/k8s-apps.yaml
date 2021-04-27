@@ -1,0 +1,33 @@
+---
+apiVersion: xl-deploy/v1
+kind: Applications
+spec:
+  - name: Applications/k8s-app
+    type: udm.Application
+    children:
+      - name: "1.0"
+        type: udm.DeploymentPackage
+        orchestrator:
+          - parallel-by-dependency
+        undeployDependencies: true
+        deployables:
+          - name: pet-clinic
+            type: k8s.ResourcesFile
+            file: !file "artifacts/petclinic-service.yaml"
+
+---
+apiVersion: xl-deploy/v1
+kind: Applications
+spec:
+  - name: Applications/k8s-app-zero-to-hero
+    type: udm.Application
+    children:
+      - name: "1.0"
+        type: udm.DeploymentPackage
+        orchestrator:
+          - parallel-by-dependency
+        undeployDependencies: true
+        deployables:
+          - name: pet-clinic-hero
+            type: k8s.ResourcesFile
+            file: !file "artifacts/empty.yaml"

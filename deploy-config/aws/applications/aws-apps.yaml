@@ -1,0 +1,18 @@
+---
+apiVersion: xl-deploy/v1
+kind: Applications
+spec:
+  - name: Applications/aws-json
+    type: udm.Application
+    lastVersion: "1.0"
+    children:
+      - name: "1.0"
+        type: udm.DeploymentPackage
+        deployables:
+          - name: aws-cloud-formation-template
+            type: aws.cloudformation.Template
+            fileEncodings:
+              ".+\\.properties": ISO-8859-1
+            inputVariables:
+              KeyName: !value aws_key_name
+            file: !file "artifacts/aws-cloud-formation.template"

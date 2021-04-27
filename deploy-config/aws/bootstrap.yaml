@@ -1,0 +1,7 @@
+apiVersion: xl/v1
+kind: Import
+metadata:
+  imports:
+    - infrastructure/aws-server.yaml
+    - environments/aws.yaml
+    - applications/aws-apps.yaml

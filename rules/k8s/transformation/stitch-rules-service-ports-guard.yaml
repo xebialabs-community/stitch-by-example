@@ -1,0 +1,29 @@
+kind: Rules
+metadata:
+  namespace: k8s
+spec:
+  - name: "ServicePortsGuard"
+    description: "Guard Service port, targetPort and nodePort for Production"
+    condition:
+      deployedType: k8s.Resources
+      expression: "@k8s.isService\
+                    && @environment.nameContains('prod')"
+    processor:
+      - type: "common:PatchReplace"
+        description: "Ensure port for Production instance"
+        phase: POST_FLIGHT
+        parameters:
+          path: "/spec/ports/0/port"
+          value: "#{@dictionary.getValue('portNumber')}"
+      - type: "common:PatchReplace"
+        description: "Ensure targetPort for Production instance"
+        phase: POST_FLIGHT
+        parameters:
+          path: "/spec/ports/0/targetPort"
+          value: "#{@dictionary.getValue('portNumber')}"
+      - type: "common:PatchReplace"
+        description: "Ensure nodePort for Production instance"
+        phase: POST_FLIGHT
+        parameters:
+          path: "/spec/ports/0/nodePort"
+          value: "#{@dictionary.getValue('nodePortNumber')}"

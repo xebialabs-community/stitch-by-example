@@ -1,0 +1,14 @@
+kind: Macros
+metadata:
+  namespace: k8s
+spec:
+  - name: "AddLabelsMacro"
+    description: "Add labels macro"
+    parameters:
+      labels: "{}"
+    processor:
+      - type: "common:AddEntryToPath"
+        description: "Add labels macro"
+        parameters:
+          path: "$..labels"
+          entries: "#{#params['labels']}"

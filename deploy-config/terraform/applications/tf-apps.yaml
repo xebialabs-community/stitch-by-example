@@ -1,0 +1,34 @@
+---
+apiVersion: xl-deploy/v1
+kind: Applications
+spec:
+  - name: Applications/terraform-k8s-json
+    type: udm.Application
+    lastVersion: "1.0"
+    children:
+      - name: "1.0"
+        type: udm.DeploymentPackage
+        deployables:
+          - name: tf-k8s-json-module
+            type: terraform.Module
+            file: !file "artifacts/k8s-json.zip"
+  - name: Applications/terraform-aws-json
+    type: udm.Application
+    lastVersion: "1.0"
+    children:
+      - name: "1.0"
+        type: udm.DeploymentPackage
+        deployables:
+          - name: tf-aws-json-module
+            type: terraform.Module
+            file: !file "artifacts/terraform-aws-vpc-0.13.2-json.zip"
+  - name: Applications/terraform-aws-hcl
+    type: udm.Application
+    lastVersion: "1.0"
+    children:
+      - name: "1.0"
+        type: udm.DeploymentPackage
+        deployables:
+          - name: tf-aws-hcl-module
+            type: terraform.Module
+            file: !file "artifacts/hcl/1.0/terraform-aws-hcl-1.0.zip"

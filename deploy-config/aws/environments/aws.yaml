@@ -1,0 +1,17 @@
+---
+apiVersion: xl-deploy/v1
+kind: Environments
+spec:
+  - name: Environments/ec2-yaml-dictionary
+    type: udm.Dictionary
+    entries:
+      InstanceId: !value instanceId
+      AZ: !value zone
+      PublicIP: !value publicIp
+      PublicDNS: !value publicDns
+  - name: Environments/Aws-env
+    type: udm.Environment
+    members:
+      - Infrastructure/aws-cloud/aws-cloud-formation
+    dictionaries:
+      - Environments/ec2-yaml-dictionary

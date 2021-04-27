@@ -1,0 +1,18 @@
+kind: Rules
+metadata:
+  namespace: k8s
+spec:
+  - name: "CreateK8SIngress"
+    condition:
+      deployedType: k8s.Resources
+      expression: "@environment.nameContains('prod') && !@dictionary.getValue('replicasSize').equals('1')"
+      postProcessing: true
+    processor:
+      - type: freemarker
+        description: "Add an simple Ingress"
+        merge:
+          type: overlay
+        parameters:
+          templateFile: templates/k8s-ingress-example.ftl
+          variables:
+            port: "#{@dictionary.getValue('portNumber')}"

@@ -1,0 +1,17 @@
+kind: Rules
+metadata:
+  namespace: k8s
+spec:
+  - name: "AddLabels"
+    condition:
+      deployedType: k8s.Resources
+    processor:
+      - type: "k8s:AddLabelsMacro"
+        description: "Add labels macro"
+        phase: PATCH
+        parameters:
+          labels: "{\
+              \"scope\": \"#{@environment.nameContains('prod') ? 'production' : 'unknown'}\",\
+              \"environment\": \"#{@environment.name}\",\
+              \"service\": \"k8s-stitch\"\
+            }"

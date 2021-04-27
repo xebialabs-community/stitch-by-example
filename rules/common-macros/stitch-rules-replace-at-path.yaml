@@ -1,0 +1,19 @@
+kind: Macros
+metadata:
+  namespace: common
+spec:
+  - name: "PatchReplace"
+    description: "Apply JSON Patch replace at path"
+    parameters:
+      path: undefined
+      value: undefined
+    processor:
+      - type: patch
+        description: "Patch replace"
+        merge:
+          type: overlay
+        parameters:
+          patch:
+            - op: replace
+              path: "#{#params['path']}"
+              value: "#{#params['value']}"

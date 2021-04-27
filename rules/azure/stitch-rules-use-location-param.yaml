@@ -1,0 +1,21 @@
+kind: Rules
+metadata:
+  namespace: azure
+spec:
+  - name: "UseLocationParameter"
+    condition:
+      deployedType: azure.arm.DeployedTemplate
+    processor:
+      - type: "common:PatchReplace"
+        description: "Add location parameter"
+        phase: PATCH
+        parameters:
+          path: "/resources/0/location"
+          value: "[parameters('location')]"
+      - type: freemarker
+        description: "Adding definition for location"
+        phase: BASE_DEFINITION
+        merge:
+          type: overlay
+        parameters:
+          templateFile: templates/parameters-location.ftl

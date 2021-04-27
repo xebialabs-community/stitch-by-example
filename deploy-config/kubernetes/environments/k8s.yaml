@@ -1,0 +1,29 @@
+apiVersion: xl-deploy/v1
+kind: Environments
+spec:
+  - name: Environments/k8s-prod-dictionary
+    type: udm.Dictionary
+    entries:
+      replicasSize: 2
+      cpuNumber: 2
+      memorySize: "2048Mi"
+      portNumber: 9090
+      nodePortNumber: 30009
+  - name: Environments/k8s-test-dictionary
+    type: udm.Dictionary
+    entries:
+      replicasSize: 1
+      cpuNumber: 1
+      memorySize: "512Mi"
+  - name: Environments/kubernetes-prod-env
+    type: udm.Environment
+    members:
+      - Infrastructure/kubernetes-docker-desktop/default
+    dictionaries:
+      - Environments/k8s-prod-dictionary
+  - name: Environments/kubernetes-test-env
+    type: udm.Environment
+    members:
+      - Infrastructure/kubernetes-docker-desktop/default
+    dictionaries:
+      - Environments/k8s-test-dictionary

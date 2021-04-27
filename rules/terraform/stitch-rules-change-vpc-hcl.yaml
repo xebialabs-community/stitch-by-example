@@ -1,0 +1,20 @@
+kind: Rules
+metadata:
+  namespace: terraform
+spec:
+  - name: "ChangeVPCName-HCL"
+    condition:
+      deployedType: terraform.ExecutedModule
+      expression: "@deployedApplication.nameEquals('terraform-aws-hcl') && #input.pathExistsWithValue('$.resource.aws_vpc.terraform_vpc[0]')"
+    processor:
+      - type: freemarker
+        description: "Change tag name for VPC (HCL use case)"
+        phase: PATCH
+        merge:
+          type: jsonpath
+          path: "$.resource.aws_vpc.terraform_vpc[0].tags"
+        parameters:
+          template: |
+            {
+              "Name": "terraform_vpc-hcl"
+            }

@@ -1,0 +1,22 @@
+kind: Rules
+metadata:
+  namespace: aws.cloudformation
+spec:
+  - name: "ChangeDescriptionAws"
+    condition:
+      deployedType: aws.cloudformation.DeployedTemplate
+    processor:
+      - type: groovy
+        description: "Change description with simple string description"
+        phase: BASE_DEFINITION
+        parameters:
+          script: |
+            import com.xebialabs.deployit.plugin.stitch.service.engine.processor.handler.groovy.MapFunction
+            def stitch(spec, params, document, ctx) {
+              document.map('$.Description', new MapFunction() {
+                Object map(currentValue) {
+                  "Simple description example"
+                }
+              })
+              document.getMutatedDocument()
+            }

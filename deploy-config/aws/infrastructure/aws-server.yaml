@@ -1,0 +1,12 @@
+---
+apiVersion: xl-deploy/v1
+kind: Infrastructure
+spec:
+  - name: Infrastructure/aws-cloud
+    type: aws.Cloud
+    accesskey: !value aws_access_key
+    accessSecret: !value aws_access_secret
+    children:
+      - name: aws-cloud-formation
+        type: aws.cloudformation.Stack
+        region: !value region

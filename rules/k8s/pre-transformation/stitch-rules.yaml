@@ -1,0 +1,22 @@
+kind: Rules
+metadata:
+  namespace: k8s
+spec:
+  - name: "CreateK8SManifest"
+    condition:
+      deployedType: k8s.Resources
+      expression: "@deployedApplication.nameEquals('k8s-app-zero-to-hero')"
+      preProcessing: true
+    processor:
+      - type: addYamlObject
+        description: "Add a Deployment to the k8s petclinic manifest"
+        merge:
+          type: none
+        parameters:
+          yamlFile: templates/k8s-petclinic-deployment.yaml
+      - type: addYamlObject
+        description: "Add a Service to the k8s petclinic manifest"
+        merge:
+          type: none
+        parameters:
+          yamlFile: templates/k8s-petclinic-service.yaml

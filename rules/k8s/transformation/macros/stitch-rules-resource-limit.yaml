@@ -1,0 +1,18 @@
+kind: Macros
+metadata:
+  namespace: k8s
+spec:
+  - name: "CpuMemoryLimitsMacro"
+    description: "CPU and Memory Limits for the deployment"
+    parameters:
+      cpuNumber: 1
+      memorySize: "512Mi"
+    processor:
+      - type: freemarker
+        description: "CPU and Memory Limits for the deployment"
+        merge:
+          path: "$.spec.template.spec.containers[0]"
+          type: jsonpath
+        parameters:
+          templateFile: templates/cpu-mem-limit.ftl
+

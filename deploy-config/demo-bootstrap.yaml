@@ -1,0 +1,9 @@
+apiVersion: xl/v1
+kind: Import
+metadata:
+  imports:
+    - configuration/bootstrap.yaml
+    - aws/bootstrap.yaml
+    - azure/bootstrap.yaml
+    - kubernetes/bootstrap.yaml
+    - terraform/bootstrap.yaml

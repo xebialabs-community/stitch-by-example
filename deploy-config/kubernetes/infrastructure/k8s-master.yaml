@@ -1,0 +1,13 @@
+---
+apiVersion: xl-deploy/v1
+kind: Infrastructure
+spec:
+  - name: Infrastructure/kubernetes-docker-desktop
+    type: k8s.Master
+    apiServerURL: !value apiServerURL
+    caCert: !value caCert
+    tlsCert: !value tlsCert
+    tlsPrivateKey: !value tlsPrivateKey
+    children:
+      - name: default
+        type: k8s.Namespace

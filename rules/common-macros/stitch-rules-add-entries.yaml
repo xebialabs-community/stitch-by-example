@@ -1,0 +1,14 @@
+kind: Macros
+metadata:
+  namespace: common
+spec:
+  - name: "AddEntryToPath"
+    description: "Adds entries to given path"
+    parameters:
+      path: undefined
+      entries: "{}"
+    processor:
+      - type: groovy
+        description: "Groovy script for adding entries to path"
+        parameters:
+          scriptFile: groovy/AddEntryToPath.groovy

@@ -1,0 +1,21 @@
+kind: Rules
+metadata:
+  namespace: k8s
+spec:
+  - name: "JavaSvcResourcesProd"
+    description: "Resources configuration for Java Application for k8s Production"
+    condition:
+      deployedType: k8s.Resources
+      expression: "@k8s.isDeployment"
+    processor:
+      - type: "k8s:ReplicasSizeMacro"
+        description: "Change replicas size to dictionary sizes"
+        phase: PATCH
+        parameters:
+          replicasSize: "#{@dictionary.getValue('replicasSize')}"
+      - type: "k8s:CpuMemoryLimitsMacro"
+        description: "Add CPU and Memory Limits for production"
+        phase: PATCH
+        parameters:
+          cpuNumber: "#{@dictionary.getValue('cpuNumber')}"
+          memorySize: "#{@dictionary.getValue('memorySize')}"

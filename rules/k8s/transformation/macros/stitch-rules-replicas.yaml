@@ -1,0 +1,14 @@
+kind: Macros
+metadata:
+  namespace: k8s
+spec:
+  - name: "ReplicasSizeMacro"
+    description: "Replicas size for the deployment"
+    parameters:
+      replicasSize: 1
+    processor:
+      - type: "common:PatchReplace"
+        description: "Change replicas size"
+        parameters:
+          path: "/spec/replicas"
+          value: "#{#params['replicasSize']}"
